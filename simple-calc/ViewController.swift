@@ -30,6 +30,11 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let secondViewController = segue.destination as! HistoryViewController
+        secondViewController.pastQueries = calculationHistory
+    }
 
     @IBAction func numberButtonPressed(_ sender: UIButton) {
         if operationSelected {
