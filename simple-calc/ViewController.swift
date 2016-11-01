@@ -137,6 +137,7 @@ class ViewController: UIViewController {
                 for currentMultiplier in 1...limit {
                     result *= currentMultiplier
                 }
+                calculationHistory.append("Factorial of \(limit): \(result)")
                 resultLabel.text = String(result)
             }
         }
