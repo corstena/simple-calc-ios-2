@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     var operationSelected = false
     var functionValueArray = [Double]()
     var rpnMode = false
+    var currentCalculation = String()
+    var calculationHistory = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,30 +60,39 @@ class ViewController: UIViewController {
         if !rpnMode {
             if resultLabel.text! != "" && !checkForOperation() {
                 secondValue = Double(resultLabel.text!)!
+                var result = ""
                 switch operation {
                 case "+":
-                    resultLabel.text = String(firstValue + secondValue)
+                    result = String(firstValue + secondValue)
+                    calculationHistory.append("\(firstValue) + \(secondValue) = \(result)")
                 case "-":
-                    resultLabel.text = String(firstValue - secondValue)
+                    result = String(firstValue - secondValue)
+                    calculationHistory.append("\(firstValue) - \(secondValue) = \(result)")
                 case "x":
-                    resultLabel.text = String(firstValue * secondValue)
+                    result = String(firstValue * secondValue)
+                    calculationHistory.append("\(firstValue) x \(secondValue) = \(result)")
                 case "/":
-                    resultLabel.text = String(firstValue / secondValue)
+                    result = String(firstValue / secondValue)
+                    calculationHistory.append("\(firstValue) / \(secondValue) = \(result)")
                 case "%":
-                    resultLabel.text = String(firstValue.truncatingRemainder(dividingBy: secondValue))
+                    result = String(firstValue.truncatingRemainder(dividingBy: secondValue))
+                    calculationHistory.append("\(firstValue) % \(secondValue) = \(result)")
                 case "count":
                     updateArray()
-                    resultLabel.text = String(functionValueArray.count)
+                    result = String(functionValueArray.count)
+                    calculationHistory.append("Count of list: \(result)")
                 case "average":
                     updateArray()
                     var total : Double = 0.0
                     for value in functionValueArray {
                         total = total + value
                     }
-                    resultLabel.text = String(total / Double(functionValueArray.count))
+                    result = String(total / Double(functionValueArray.count))
+                    calculationHistory.append("Average of list: \(result)")
                 default:
                     resultLabel.text = "Error! Invalid Operation"
                 }
+                resultLabel.text = result
                 resetValues()
             }
         }
