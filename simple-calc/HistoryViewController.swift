@@ -14,7 +14,12 @@ class HistoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        for value in pastQueries {
+            let label = UILabel(frame: CGRect(x: 0, y: 75 + pastQueries.index(of: value)! * 30, width: 200, height: 21))
+            label.textAlignment = .left
+            label.text = value
+            self.view.addSubview(label)
+        }
         // Do any additional setup after loading the view.
     }
 
